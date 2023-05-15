@@ -1,0 +1,10 @@
+header{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    background: #4a4f7e;
+    color: white;
+    padding: 1rem;
+    align-items: center;
+    justify-content: center;
+
+}

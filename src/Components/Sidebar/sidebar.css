@@ -1,0 +1,34 @@
+aside{
+    left: 0;
+    /* height:fit-content; */
+    position: sticky;
+    background: white;
+    margin: 1rem;
+    width: 20rem;
+    border-radius: 10px;
+    text-align: left;
+    padding: 1rem;
+}
+table{
+    width:100%;
+    
+}
+.sidebar-table tr td:first-child{
+    text-align: left;
+    padding-top: 1rem;
+}
+.sidebar-table tr td:last-child{
+    text-align: left;
+    padding-left:2rem;
+    padding-top: 1rem;
+}
+#dropdown-basic{
+    background-color: #f5f4f4;
+    border:none;
+    color:black;
+    width:100%;
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
