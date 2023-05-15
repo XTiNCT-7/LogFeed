@@ -1,0 +1,19 @@
+.search{
+    height:3rem;
+}
+.accordian-header table{
+    text-align: center;
+}
+
+table td{
+    width:5rem;
+}
+table td:first-child{
+    width:2rem
+}
+.table-title{
+    padding: 16px 20px !important;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1.07fr;
+
+}
