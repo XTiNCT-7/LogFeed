@@ -1,12 +1,19 @@
 import React from 'react'
 import Accordion from 'react-bootstrap/Accordion';
 const LogItem=({data,index})=> {
-    console.log(index)
+    let backgroundColor='';
+    if(data.level=="INFORMATION"){
+        backgroundColor="#7dcb7d";
+    }else if(data.level=="WARNING"){
+        backgroundColor="orange";
+    }else if(data.level=="TRACE"){
+        backgroundColor="blue";
+    }
   return (
-    <article>
+    <>
         <Accordion.Item eventKey={index}>
                 <Accordion.Header>
-                    <table> 
+                    <table className="log-table">  
                         <tr>
                             <td>
                                 <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike"/>
@@ -14,16 +21,17 @@ const LogItem=({data,index})=> {
                             </td>
                             <td>{data.date}</td>
                             <td>{data.time}</td>
-                            <td>{data.level}</td>
-                        </tr>
+                            <td ><div style={{backgroundColor}}>{data.level}</div></td>
+                            <td>{data.message}</td>
+                        </tr> 
                     </table>
                     {/* {data.message} */}
                 </Accordion.Header>
                 <Accordion.Body>
-                    {data.message}
+                    Additional information
                 </Accordion.Body>
         </Accordion.Item>
-    </article>
+    </>
   )
 }
 

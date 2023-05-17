@@ -1,23 +1,52 @@
-import React from 'react'
+import React,{useState,useEffect} from 'react'
 import Accordion from 'react-bootstrap/Accordion';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import {BiSearch} from 'react-icons/bi';
 import LogItem from './LogItem';
 import './LogItem.css';
-const Log=()=> {
+
+
+
+const Log=({levelFilterData,dateFilterData})=> {
+    const filterData=[];
+    filterData.push(levelFilterData,dateFilterData);
+    console.log("log",filterData)
+    
+    const [searchItem, setSearchItem]=useState("");
+    
+    
+
+    let debounceTimeout = null;
+    const debounce=(func, delay)=>{
+    
+        clearTimeout(debounceTimeout);
+        debounceTimeout=setTimeout(func,delay);
+    }
+
+
+    
+    // useEffect(()=>{
+    //     if(filterData[0].length!=0){
+    //         setFilterLogs();
+    //     }
+    // },[filterData])
+
+    
     const data=[
-            "03/22 08:51:06 INFO   :.....mailslot_create: creating mailslot for RSVP",
-            "03/23 08:51:06 INFO   :....mailbox_register: mailbox allocated for ",
-            "03/24 08:51:06 INFO   :.....mailslot_create: creating mailslot for RSVP via UDP",
+            "03/22 08:51:06 INFORMATION   :.....mailslot_create: creating mailslot for RSVP",
+            "03/23 08:51:06 INFORMATION   :....mailbox_register: mailbox allocated for ",
+            "03/24 08:51:06 INFORMATION   :.....mailslot_create: creating mailslot for RSVP via UDP",
             "03/24 08:51:06 WARNING :.....mailslot_create: setsockopt(MCAST_ADD) failed - EDC8116I Address not available.",
-            "03/24 08:51:06 INFO   :....mailbox_register: mailbox allocated for rsvp-udp",
+            "03/24 08:51:06 INFORMATION   :....mailbox_register: mailbox allocated for rsvp-udp",
             "04/24 08:51:06 TRACE  :..entity_initialize: interface 9.67.100.1, entity for rsvp allocated and initialized"
         ]
     
+    const [totalData,setTotalData]=useState(data);
+   
     const jsonData = [];
 
-    data.forEach((logEntry) => {
+    totalData.forEach((logEntry) => {
     const logObject = {};
     const logComponents = logEntry.split(" ");
     logObject.date = logComponents[0];
@@ -27,43 +56,102 @@ const Log=()=> {
     
     jsonData.push(logObject);
     });
-    console.log(jsonData);
+    
+    
+    const setFilterLogs=()=>{
+        let temp=data.filter((field)=>{
+            // let matchFilter=false;
+            const values = [...filterData[0]];
+            // console.log(values[0])
+            console.log(field.level)
+            if(values.includes(field.level)){
+                // matchFilter=true;
+                return true;
+            }
+            // }else if(values.includes("warning") && field.includes("Warning".toUpperCase())){
+            //     // matchFilter=true;
+            // }else if(values.includes("verbose") && field.includes("verbose".toUpperCase())){
+            //     console.log("true")
+            // }
+            // else if([...filterData].includes("trace") && field.includes("trace".toUpperCase())){
+            //     console.log("true")
+            // }
+
+            // const matchFilter=filterData.includes(field);
+            // console.log(matchFilter)
+            // return matchFilter;
+        })
+        setTotalData(temp);
+        
+    }
+    // setFilterLogs();
+    
+
+    const setSearchLogs=(value)=>{
+        console.log(value)
+        setSearchItem(value);
+        debounce(()=>{
+            
+            let temp=data.filter((field)=>{
+                console.log("timeout",debounceTimeout)
+                const matchSearch=field.toLowerCase().includes(searchItem.toLowerCase());
+                // const matchFilter=filterData.includes(field);
+                return matchSearch;
+                
+            })
+            setTotalData(temp);
+        },1000)
+        
+    };
+
+    
+    
+
+    
+    console.log("filterdata",jsonData);
+    
   return (
     <div>
         <div>
             <InputGroup className="mb-3 search">
                 <Form.Control
-                placeholder="Recipient's username"
-                aria-label="Recipient's username"
+                placeholder="Search"
+                value={searchItem}
+                onChange={(e)=>{
+                    setSearchLogs(e.target.value);
+                }}
                 aria-describedby="basic-addon2"
                 />
-                <InputGroup.Text id="basic-addon2"><BiSearch/></InputGroup.Text>
+                <InputGroup.Text id="basic-addon2" ><BiSearch/></InputGroup.Text>
             </InputGroup>
         </div>
         <div className="table-title">
             <span>Select</span>
             <span>Date</span>  
             <span>Time</span>  
-            <span>Level</span>    
+            <span>Level</span>   
+            <span>Message</span> 
         </div>
+        {/* <table> */}
         <Accordion defaultActiveKey="0">
             {jsonData.map((i,index)=>{
-                console.log(index)
+                
                 return(
-                    <table>
-                        {/* <tr> */}
+                    <>
+                        {/* // <tr> */}
                             {/* <td> */}
                            
-                                <LogItem data={i} index={index}/>
+                                <LogItem data={i} index={index} />
                             {/* </td> */}
-                        {/* </tr> */}
-                    </table>
-                    
+                        {/* // </tr> */}
+                    {/* // </table> */}
+                    </>
                 )
             })}
            {/* <LogItem/> */}
             
         </Accordion>
+        {/* </table> */}
     </div>
   )
 }

@@ -4,16 +4,42 @@
 .accordian-header table{
     text-align: center;
 }
-
-table td{
-    width:5rem;
+.log-table {
+    width: 100%;
+    table-layout: fixed;
+  }
+  
+  .log-table td {
+    padding: 8px;
+    text-align: left;
+  }
+  
+  .log-table td:first-child {
+    width: 10%;
+  }
+  
+  .log-table td:nth-child(2),
+  .log-table td:nth-child(3)
+   {
+    width: 20%;
+  }
+  .log-table td:nth-child(4) div{
+    color: white;
+    text-align: center;
+    translate: -2rem;
+    border-radius: 1rem;
+    padding: 0.2rem;
+    /* width: 30%; */
+  }
+/* table td{
+    width:7rem;
 }
 table td:first-child{
     width:2rem
-}
+} */
 .table-title{
     padding: 16px 20px !important;
     display: grid;
-    grid-template-columns: 1fr 1fr 1.07fr;
+    grid-template-columns: 0.6fr 1fr 1fr 1.4fr 1fr;
 
 }

@@ -1,10 +1,20 @@
-header{
-    display: grid;
+.header{
+    /* display: grid;
     grid-template-columns: repeat(2,1fr);
     background: #4a4f7e;
     color: white;
     padding: 1rem;
     align-items: center;
-    justify-content: center;
+    justify-content: center; */
+    /* margin-left: 320px; */
+    text-align: right;
+    padding-right: 5rem;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: end;
 
+}
+.header svg{
+    font-size: x-large;
 }
