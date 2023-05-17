@@ -5,6 +5,8 @@ import InputGroup from 'react-bootstrap/InputGroup';
 import {BiSearch} from 'react-icons/bi';
 import LogItem from './LogItem';
 import './LogItem.css';
+import LogSummary from './LogSummary';
+import './Log.css'
 
 
 
@@ -125,33 +127,37 @@ const Log=({levelFilterData,dateFilterData})=> {
                 <InputGroup.Text id="basic-addon2" ><BiSearch/></InputGroup.Text>
             </InputGroup>
         </div>
-        <div className="table-title">
-            <span>Select</span>
-            <span>Date</span>  
-            <span>Time</span>  
-            <span>Level</span>   
-            <span>Message</span> 
-        </div>
-        {/* <table> */}
-        <Accordion defaultActiveKey="0">
+
+        <LogSummary length={data.length} time={"time"} />
+
+        <div className='mt-3 bg-white rounded overflow-hidden m-1'>
+        <table className="table table-hover" >
+            <thead>
+                <tr className='bg-header text-white'>
+                <th>Select</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Level</th>
+                <th></th>
+                </tr>
+            </thead>
+       
+        
+        <tbody>
             {jsonData.map((i,index)=>{
-                
+                console.log(index)
                 return(
-                    <>
-                        {/* // <tr> */}
-                            {/* <td> */}
-                           
-                                <LogItem data={i} index={index} />
-                            {/* </td> */}
-                        {/* // </tr> */}
-                    {/* // </table> */}
-                    </>
+                   
+                        <LogItem data={i} index={index}/>
+                    
                 )
             })}
-           {/* <LogItem/> */}
-            
-        </Accordion>
-        {/* </table> */}
+           
+           </tbody>
+      
+        
+        </table>
+        </div>
     </div>
   )
 }

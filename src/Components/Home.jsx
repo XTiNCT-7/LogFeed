@@ -4,7 +4,6 @@ import Sidebar from './Sidebar/Sidebar';
 import Log from './LogItem/Log';
 
 import './home.css';
-import {LazyLog} from 'react-lazylog';
 
 const Home=()=>{
 
@@ -18,11 +17,11 @@ const Home=()=>{
     // console.log("Home",filter)
     return (
     <>
-            
+            <Header/>
             <main>
                 <Sidebar onFilter={handleFilter}/>
                 <div>
-                <Header/>
+                
                 <section>
                 
                     <Log levelFilterData={levelFilter} dateFilterData={dateFilter} />

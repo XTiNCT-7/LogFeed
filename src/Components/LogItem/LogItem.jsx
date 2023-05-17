@@ -1,38 +1,34 @@
 import React from 'react'
 import Accordion from 'react-bootstrap/Accordion';
-const LogItem=({data,index})=> {
-    let backgroundColor='';
-    if(data.level=="INFORMATION"){
-        backgroundColor="#7dcb7d";
-    }else if(data.level=="WARNING"){
-        backgroundColor="orange";
-    }else if(data.level=="TRACE"){
-        backgroundColor="blue";
-    }
-  return (
-    <>
-        <Accordion.Item eventKey={index}>
-                <Accordion.Header>
-                    <table className="log-table">  
-                        <tr>
-                            <td>
-                                <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike"/>
-                                {/* <label for="vehicle1"> Error</label> */}
-                            </td>
-                            <td>{data.date}</td>
-                            <td>{data.time}</td>
-                            <td ><div style={{backgroundColor}}>{data.level}</div></td>
-                            <td>{data.message}</td>
-                        </tr> 
-                    </table>
-                    {/* {data.message} */}
-                </Accordion.Header>
-                <Accordion.Body>
-                    Additional information
-                </Accordion.Body>
-        </Accordion.Item>
-    </>
-  )
+import { BiCaretDown, BiCartDownload } from 'react-icons/bi';
+const LogItem = ({ data, index }) => {
+    console.log(index)
+    return (
+        <>
+        <tr style={{backgroundColor: "#F0F8FF"}}>
+            <td>
+                <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike" />
+            </td>
+            <td>{data.date}</td>
+            <td>{data.time}</td>
+            <td>{data.level}</td>
+            <td>
+                <button class="btn" type="button" data-bs-toggle="collapse" data-bs-target={"#ac"+index} aria-expanded="false" aria-controls="accordionContent">
+                    <BiCaretDown />
+                </button>
+            </td>
+        </tr>
+        <tr>
+            <td colSpan={5}>
+            <div class="collapse" id={"ac"+index}>
+                    <div class="card card-body">
+                        <p>{data.message}</p>
+                    </div>
+                </div>
+                </td>
+        </tr>
+        </>
+    )
 }
 
 export default LogItem
