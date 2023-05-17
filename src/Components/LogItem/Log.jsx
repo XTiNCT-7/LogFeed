@@ -1,5 +1,4 @@
 import React,{useState,useEffect} from 'react'
-import Accordion from 'react-bootstrap/Accordion';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import {BiSearch} from 'react-icons/bi';
@@ -134,11 +133,11 @@ const Log=({levelFilterData,dateFilterData})=> {
         <table className="table table-hover" >
             <thead>
                 <tr className='bg-header text-white'>
-                <th>Select</th>
-                <th>Date</th>
-                <th>Time</th>
-                <th>Level</th>
-                <th></th>
+                <th className='col-1'>Select</th>
+                <th className='col-2'>Date</th>
+                <th className='col-2'>Time</th>
+                <th className='col-2'>Level</th>
+                <th className='col-5'>Logs</th>
                 </tr>
             </thead>
        
