@@ -2,15 +2,7 @@ body{
     background-color: #f5f4f4!important;
     font-family: 'Poppins',sans-serif!important;
 }
-main{
-    display: grid;
-    grid-template-columns: 0.5fr 2.5fr;
-}
-section{
-    /* background: white; */
-    margin: 1rem 1rem 1rem 0;
-    /* width: 20rem; */
-    border-radius: 10px;
-    text-align: left;
-    /* padding: 1rem; */
-}
+
+.bg-header{
+    background-color: #4a4f7e;
+ }

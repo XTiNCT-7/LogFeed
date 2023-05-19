@@ -1,35 +1,27 @@
-import React,{useState} from 'react'
+import React from 'react'
 import Header from './Header/Header';
 import Sidebar from './Sidebar/Sidebar';
 import Log from './LogItem/Log';
 
 import './home.css';
 
-const Home=()=>{
+const Home = () => {
 
-    const [levelFilter,setLevelFilter]=useState([]);
-    const [dateFilter, setDateFilter] = useState(null);
-    const handleFilter=(level,date)=>{
-        setLevelFilter(level);
-        setDateFilter(date);
-    }
-    
-    // console.log("Home",filter)
     return (
-    <>
-            <Header/>
-            <main>
-                <Sidebar onFilter={handleFilter}/>
-                <div>
-                
-                <section>
-                
-                    <Log levelFilterData={levelFilter} dateFilterData={dateFilter} />
-                </section>
+        <>
+            <Header />
+            <div className='mt-4 container'>
+                <div className='row'>
+                    <div className='col-3'>
+                        <Sidebar />
+                    </div>
+                    <div className='col-9'>
+                        <Log/>
+                    </div>
                 </div>
-            </main>
+            </div>
         </>
-  )
+    )
 }
 
 export default Home

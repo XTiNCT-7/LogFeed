@@ -1,136 +1,91 @@
-import React,{useState,useEffect} from 'react'
-import {FaFilter} from 'react-icons/fa';
-import Dropdown from 'react-bootstrap/Dropdown';
-import Form from 'react-bootstrap/Form';
-import InputGroup from 'react-bootstrap/InputGroup';
-import './sidebar.css';
-const Sidebar=({onFilter})=>{
+import React from 'react'
+import { FaFilter } from 'react-icons/fa'
+import './sidebar.css'
 
-    const [date,setDate]=useState([]);
-    const [level,setLevel]=useState([]);
-    const filterData=[];
-    const jsonFilterData={};
-    // useEffect(() => {
-        // const setFilterData=(e)=>{
-        //     const checkedLevel=[...level];
-        //     if(e.target.checked){
-        //         checkedLevel.push(e.target.value);
-        //     }else{
-        //         const index=checkedLevel.indexOf(e.target.value);
-        //         if(index>-1){
-        //             checkedLevel.splice(index,1);
-        //         }
-        //     }
-        //     setLevel(checkedLevel);
-        //     console.log(level)
-        //     // onFilter();
-        // }
-    
-      
-    // }, [level])
-    
-    const setDateData=(value)=>{
-        // console.log(value)
-        var now = new Date();
-        var then = new Date(now.setHours(now.getHours() - value));
-       
-        // console.log(then)
-        setDate(then);
-        // console.log(date,"date")
+const systems = ["System1", "System2", "System3"]
+
+export default function Sidebar() {
+
+    const handleDate = (e)=>{
+        console.log(e.target.value)
     }
 
-    const setLevelData=(e)=>{
-        const checkedLevel=[...level];
-        if(e.target.checked){
-            checkedLevel.push(e.target.value);
-        }else{
-            const index=checkedLevel.indexOf(e.target.value);
-            if(index>-1){
-                checkedLevel.splice(index,1);
-            }
-        }
-        setLevel(checkedLevel);
-        // jsonFilterData.checklevel=level;
-       
-        console.log(level)
-        // onFilter();
+    const handleTime = (e)=>{
+        console.log(e.target.value)
     }
-    onFilter(level,date)
-    console.log(onFilter,"onfilter")
-    useEffect(() => {
-        // Perform any actions based on the updated `level` state
-        console.log(level);
-      }, [level]);
-    
-  return (
-    <aside>
-        <div className='title'>
-            Dashboard
-        </div>
-        
-        <div className="filter">
-            <span><FaFilter/></span><span className='filter-title'> Filter Logs</span>
-        </div>
-        <div>
-            <table className="sidebar-table">
-                <tr>
-                    <td>
-                        <span>Logged</span>
-                    </td>
-                    <td>
-                        <Dropdown>
-                            <Dropdown.Toggle variant="secondary" id="dropdown-basic">
-                                {date.toLocaleString()}
-                            </Dropdown.Toggle>
 
-                            <Dropdown.Menu>
-                                <Dropdown.Item onClick={(e)=>{setDateData(1)}}>Last hour</Dropdown.Item>
-                                <Dropdown.Item onClick={(e)=>{setDateData(24)}}>Last 24 hours</Dropdown.Item>
-                                <Dropdown.Item onClick={(e)=>{setDateData(360)}}>Last 15 days</Dropdown.Item>
-                                <Dropdown.Item onClick={(e)=>{setDateData(720)}}>Last 30 days</Dropdown.Item>
-                            </Dropdown.Menu>
-                        </Dropdown>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <span>Event level</span>
-                    </td>
-                    <td style={{textAlign:`left`,paddingLeft:`2rem`}}>
-                        <input type="checkbox" id="level1" name="information" value="information" onChange={(e)=>{setLevelData(e)}} />
-                        <label for="level1">Information</label><br/>
-                        <input type="checkbox" id="level2" name="warning" value="warning" onChange={(e)=>{setLevelData(e)}}/>
-                        <label for="level2"> Warning</label><br/>
-                        <input type="checkbox" id="level3" name="Verbose"value="verbose"  onChange={(e)=>{setLevelData(e)}}/>
-                        <label for="level3"> Verbose</label><br/>
-                        <input type="checkbox" id="level4" name="Error" value="error"  onChange={(e)=>{setLevelData(e)}}/>
-                        <label for="level4"> Error</label>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <span>Computers</span>
-                    </td>
-                    <td>
-                        <Dropdown>
-                            <Dropdown.Toggle variant="success" id="dropdown-basic">
-                                Dropdown Button
-                            </Dropdown.Toggle>
+    const handleLogType = (e)=>{
+        console.log(e.target.value)
+    }
 
-                            <Dropdown.Menu>
-                                <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-                                <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-                                <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
-                            </Dropdown.Menu>
-                        </Dropdown>
-                    </td>
-                </tr>
-            </table>
-        </div>
-        
-        
-    </aside>
-  )
+    const handleSystem = (e)=>{
+        console.log(e.target.value)
+    }
+
+
+    return (
+        <section className='bg-header p-4 text-white rounded'>
+            <div className='fs-4 fw-bold'><FaFilter /> Filters</div>
+            <div className='row mt-4'>
+                <div className='col-4'>Date:</div>
+                <div className='col-8'>
+                    <div className='rounded overflow-hidden'>
+                        <input type="date" className="form-control " id="datevalue" onChange={handleDate}/>
+                    </div>
+                </div>
+            </div>
+            <hr className='text-light' />
+            <div className='row mt-4'>
+                <div className='col-4'>Time:</div>
+                <div className='col-8'>
+                    <div className="dropdown">
+                        <select className="form-select form-select-sm" defaultValue="0" aria-label="select time" onChange={handleTime} >
+                            <option value="0" selected>Choose time</option>
+                            <option value="0.25">Last 15 minutes</option>
+                            <option value="0.5">Last 30 minutes</option>
+                            <option value="1">Last 1 hour</option>
+                            <option value="2">Last 2 hours</option>
+                            <option value="4">Last 4 hours</option>
+                            <option value="6">Last 6 hours</option>
+                            <option value="12">Last 12 hours</option>
+                            <option value="24">Last 24 hours</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <hr className='text-light' />
+            <div className='row mt-4'>
+                <div className='col-4'>Log Type:</div>
+                <div className='col-8'>
+                    <div className="dropdown">
+                        <select className="form-select form-select-sm" defaultValue="none" aria-label="select log type" onChange={handleLogType}>
+                            <option value="none" selected>Choose log</option>
+                            <option value="information">Information</option>
+                            <option value="warning">Warning</option>
+                            <option value="trace">Trace</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <hr className='text-light' />
+            <div className='row mt-4'>
+                <div className='col-4'>System:</div>
+                <div className='col-8'>
+                    <div className="dropdown">
+                        <select className="form-select form-select-sm" defaultValue="none" aria-label="select system" onChange={handleSystem}>
+                            <option value="none" selected>Choose system</option>
+                            {
+                                systems.map((value,index)=>{
+                                    return(
+                                        <option value={value} key={index}>{value}</option>
+                                    )
+                                })
+                            }
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    )
 }
-
-export default Sidebar
