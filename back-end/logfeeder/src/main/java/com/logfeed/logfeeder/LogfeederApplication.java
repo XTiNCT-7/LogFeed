@@ -1,7 +1,17 @@
 package com.logfeed.logfeeder;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.Vector;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+import com.jcraft.jsch.ChannelSftp;
+import com.jcraft.jsch.JSch;
+import com.jcraft.jsch.JSchException;
+import com.jcraft.jsch.Session;
+import com.jcraft.jsch.SftpException;
 
 @SpringBootApplication
 public class LogfeederApplication {
