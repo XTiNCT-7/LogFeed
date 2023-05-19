@@ -4,6 +4,7 @@ import Sidebar from './Sidebar/Sidebar';
 import Log from './LogItem/Log';
 
 import './home.css';
+import LogFetcher from '../Service/LogFetcher';
 
 const Home=()=>{
 
@@ -28,6 +29,7 @@ const Home=()=>{
                 </section>
                 </div>
             </main>
+            <LogFetcher/>
         </>
   )
 }
