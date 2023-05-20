@@ -94,7 +94,7 @@ const Log = () => {
         updatedData.splice(index, 1);
         setJsonData(updatedData);
 
-        alert("Log deleted successfully")
+        //alert("Log deleted successfully")
     }
 
 
@@ -120,7 +120,7 @@ const Log = () => {
                 <nav aria-label="Page navigation example">
                     <ul className="pagination pagination-sm justify-content-end">
                         <li className="page-item">
-                            <button className={activePage===1 ? "page-link disabled" : "page-link"} tabindex="-1" aria-disabled="true" 
+                            <button className={activePage===1 ? "page-link disabled" : "page-link"} aria-disabled="true" 
                             onClick={()=>{setActivePage(activePage-1)}}>Previous</button>
                         </li>
                         {
