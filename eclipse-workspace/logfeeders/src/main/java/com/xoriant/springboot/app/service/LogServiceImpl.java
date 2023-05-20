@@ -14,6 +14,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.xoriant.springboot.app.exception.DataNotFoundException;
 import com.xoriant.springboot.app.models.Logs;
 import com.xoriant.springboot.app.repository.LogRepository;
 
@@ -107,9 +108,10 @@ public class LogServiceImpl implements LogService{
     }
 
 	@Override
-	public List<Logs> getLogs() {
-		
-		return logRepository.findAll();
+	public List<Logs> getLogs() throws DataNotFoundException{
+//		List<Logs> logs=logRepository.findAll();
+		logger.info("response:{}",logs.size());
+		return logs;
 	}
 
 	@Override
@@ -119,9 +121,27 @@ public class LogServiceImpl implements LogService{
 	}
 
 	@Override
-	public List<Logs> getDataByTime() {
+	public List<Logs> getDataByTime(int time) {
 		System.out.println(Timestamp.from(Instant.now()));
-		return logRepository.getDataByTime();
+		return logRepository.getDataByTime(time);
+	}
+
+	@Override
+	public List<Logs> getDataBySystem(String system) throws DataNotFoundException{
+		
+		return logRepository.getBySystemName(system);
+	}
+
+	@Override
+	public List<Logs> searchLogs(String searchTerm) throws DataNotFoundException{
+		// TODO Auto-generated method stub
+		return logRepository.searchLogs(searchTerm);
+	}
+
+	@Override
+	public int getLengthofLogs() {
+		
+		return logRepository.findAll().size();
 	}
 	
 	
