@@ -4,15 +4,16 @@ import './sidebar.css'
 
 const systems = ["MUTS-72636-WL", "System2", "System3"]
 
-export default function Sidebar({onFilter}) {
+export default function Sidebar({onFilterTime,onFilterSystem,onFilterDate}) {
 
     const handleDate = (e)=>{
+        onFilterDate(e.target.value)
         console.log(e.target.value)
     }
 
     const handleTime = (e)=>{
         console.log(e.target.value)
-        onFilter(e.target.value);
+        onFilterTime(e.target.value);
     }
 
     const handleLogType = (e)=>{
@@ -21,7 +22,7 @@ export default function Sidebar({onFilter}) {
 
     const handleSystem = (e)=>{
         console.log(e.target.value)
-        onFilter(e.target.value)
+        onFilterSystem(e.target.value)
     }
 
 
@@ -56,7 +57,7 @@ export default function Sidebar({onFilter}) {
                 </div>
             </div>
             <hr className='text-light' />
-            <div className='row mt-4'>
+            {/* <div className='row mt-4'>
                 <div className='col-4'>Log Type:</div>
                 <div className='col-8'>
                     <div className="dropdown">
@@ -69,7 +70,7 @@ export default function Sidebar({onFilter}) {
                     </div>
                 </div>
             </div>
-            <hr className='text-light' />
+            <hr className='text-light' /> */}
             <div className='row mt-4'>
                 <div className='col-4'>System:</div>
                 <div className='col-8'>
