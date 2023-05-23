@@ -1,5 +1,6 @@
 package com.xoriant.springboot.app.controller;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,9 +35,13 @@ public class LogController {
 		return logService.getLogs();
 	}
 
-	@GetMapping("/sortByDate")
-	public List<Log> getLogsSortByDate() {
-		return logService.getLogsSortedByDate();
+	@GetMapping("/getByDate/{date}")
+	public List<Log> getLogsByDate(@PathVariable String date) throws DataNotFoundException {
+		List<Log> logs = logService.getLogsByDate(date);
+		if (logs.isEmpty()) {
+			throw new DataNotFoundException("No logs found for the given date: " + date);
+		}
+		return logs;
 	}
 
 	@GetMapping("/getByTime/{time}")
