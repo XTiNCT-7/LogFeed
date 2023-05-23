@@ -12,7 +12,7 @@ public interface LogService {
 
 	public List<Log> getLogs() throws DataNotFoundException;
 
-	public List<Log> getLogsSortedByDate();
+	public List<Log> getLogsByDate(String date) throws DataNotFoundException;
 
 	public List<Log> getDataByTime(int time) throws DataNotFoundException;
 
